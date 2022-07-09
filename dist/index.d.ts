@@ -11,7 +11,7 @@ declare class PrinterModule {
     scanDevices(callback: Callback): Promise<boolean>;
     stopScanDevices(): Promise<boolean>;
     connectDevice(deviceID: string, timeout?: number): Promise<any>;
-    connectAndPrintReceipt(deviceId: string): Promise<void>;
+    connectAndPrintReceipt(deviceId: string, storageUrl?:string): Promise<void>;
     private listenToNativeEvent;
     private log;
     private initiatePrintReceipt;
