@@ -79,10 +79,10 @@ class PrinterModule {
     }
 
     // connect and print to pos printer device
-    public connectAndPrintReceipt(deviceId: string): Promise<void> {
+    public connectAndPrintReceipt(deviceId: string, storageUrl: string = ''): Promise<void> {
         return this.connectDevice(deviceId, 3000)
             .then(() => {
-                return this.initiatePrintReceipt();
+                return this.initiatePrintReceipt(storageUrl);
             });
     }
 
@@ -111,7 +111,7 @@ class PrinterModule {
     }
 
     // initiate printer with image before print
-    private initiatePrintReceipt() {
+    private initiatePrintReceipt(storageUrl:string = '') {
         try {
             const dirs = RNFetchBlob.fs.dirs;
             return RNFetchBlob
@@ -119,7 +119,7 @@ class PrinterModule {
                     // response data will be saved to this path if it has access right.
                     path: dirs.SDCardDir + '/image.png',
                 })
-                .fetch('GET', 'download url')
+                .fetch('GET', storageUrl)
                 .then((res: any) => {
                     this.log('print with image, download image success');
                     return this.printTestReceipt(res.path());
