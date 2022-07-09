@@ -126,7 +126,7 @@ class PrinterModule {
                 })
                 .catch(e => {
                     // fallback if something went wrong with rn fetch blob
-                    this.log('print with image, fallback print without image' + JSON.stringify(e));
+                    this.log('print with image,Example fallback print without image' + JSON.stringify(e));
                     return this.printTestReceipt();
                 });
         } catch (e) {
